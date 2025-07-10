@@ -3,7 +3,7 @@ let  sorteados = [];
 
 function adicionar(){
     const nomeElemento = document.getElementById('nomeInput');
-    const nome = nomeElemento.value;
+    let nome = nomeElemento.value;
 
     if (nome === '') {
         alert('Por favor, digite um nome!');
@@ -16,7 +16,9 @@ function adicionar(){
     }
     
     //P1 - O nome deverá ser em letra maiúscula
+nome = nome.toUpperCase();
     //P2 - Deverá ser retirado os espaços do nomes
+    nome = nome.trim();
     nomes.add(nome);
     atualizarParticipantes();
     habilitarSorteio();
@@ -26,6 +28,7 @@ function adicionar(){
 
 function remover(nome) {
     //P3 - O nome deverá ser retirado da coleção do tipo SET  
+    nomes.delete(nome);
     atualizarParticipantes();
     habilitarSorteio();
 }
@@ -116,7 +119,7 @@ function sortear() {
         }
 
         //P4 - O elemento sorteado deverá ser retirado da coleção SET nomes
-  
+       remover(vencedor);
 
     }, 1500);
 
@@ -126,7 +129,7 @@ function sortear() {
 function excluirTodosParticipantes(){
     if (confirm('Tem certeza que deseja remover todos os participantes?')) {
         //P5 - Todos os elementos de nomes e de sorteados deverão ser excluídos!
-
+        nomes.clear();
         atualizarParticipantes();
         atualizarSorteados();
         habilitarSorteio();      
@@ -136,7 +139,8 @@ function excluirTodosParticipantes(){
 function excluirTodosSorteados() {
     if (confirm('Tem certeza que deseja remover todos os Sorteados?')) {
         //P6 - Todos os elementos de sorteados deverão ser excluídos!
-
+        
+        sorteados = [];
         atualizarSorteados();
         habilitarSorteio();
         
